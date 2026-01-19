@@ -18,7 +18,7 @@ The core principle behind our research is "Living off the Cloud"—the idea that
 
 *   **Abstract:** *This research characterizes a novel class of "Infrastructure-less" distributed systems termed Chimeric Networks. By weaponizing the functional overlap between unauthenticated IoT signaling (MQTT), peer-to-peer discovery (MLDHT), and browser-native transport (WebRTC), we demonstrate a methodology for parasitic computation and residential proxying that resides entirely within legitimate public protocol traffic.*
 *   **Status:** Published
-*   **Link:** https://michaelrapoport.github.io/Security-Research-Whitepapers/Chimeric%20Exploitation%20Networks%20-%20Whitepaper%20-%201-19-26.html
+*   **Link:** <a href="https://michaelrapoport.github.io/Security-Research-Whitepapers/Chimeric%20Exploitation%20Networks%20-%20Whitepaper%20-%201-19-26.html">here</a>
 
 ---
 
