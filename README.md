@@ -44,9 +44,7 @@ The work at Polaritrionics Labs is self-funded. If you find value in our researc
 
 ### Direct Wallet Addresses
 
-*   **Bitcoin (BTC):** `bc1q...` (Placeholder Address)
-*   **Ethereum (ETH):** `0x...` (Placeholder Address)
-*   **Monero (XMR):** `4...` (Placeholder Address)
+*   LTC: ltc1q75ajtdx8ffheh45un0r2qlzmuz2vf84hvkas44
 
 ### Pay with Crypto (via NOWPayments)
 
