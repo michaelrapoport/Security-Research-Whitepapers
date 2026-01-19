@@ -18,7 +18,7 @@ The core principle behind our research is "Living off the Cloud"—the idea that
 
 *   **Abstract:** *This research characterizes a novel class of "Infrastructure-less" distributed systems termed Chimeric Networks. By weaponizing the functional overlap between unauthenticated IoT signaling (MQTT), peer-to-peer discovery (MLDHT), and browser-native transport (WebRTC), we demonstrate a methodology for parasitic computation and residential proxying that resides entirely within legitimate public protocol traffic.*
 *   **Status:** Published
-*   **Link:** `[Read Full Paper](./papers/PL-2026-X9_Chimeric_Networks.pdf)` (Link placeholder)
+*   **Link:** see repo
 
 ---
 
@@ -26,16 +26,14 @@ The core principle behind our research is "Living off the Cloud"—the idea that
 
 *   **Abstract:** *This paper details a Command & Control methodology that utilizes public Certificate Transparency Logs and blockchain testnet smart contracts as a globally replicated, immutable, and uncensorable broadcast mechanism. We demonstrate how to pass instructions to a distributed swarm with zero network traffic attributable to the operator.*
 *   **Status:** In Peer Review
-*   **Link:** `[Pre-Print Available Soon]` (Link placeholder)
-
+*   **Link:** see repo
 ---
 
 ### 📄 **PL-2027-G5: WebGPU for Parallelized Cryptanalysis**
 
 *   **Abstract:** *An analysis of modern browser WebGPU capabilities for orchestrating massively parallel, client-side cryptanalytic attacks. This paper includes performance benchmarks for brute-forcing various hashing algorithms by transforming a fleet of transient web visitors into a temporary, high-performance GPU cluster.*
 *   **Status:** In Progress
-*   **Link:** `[Draft Available to Sponsors]` (Link placeholder)
-
+*   **Link:** see repo
 ---
 
 ## Support Our Independent Research
