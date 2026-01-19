@@ -26,14 +26,14 @@ The core principle behind our research is "Living off the Cloud"—the idea that
 
 *   **Abstract:** *This paper details a Command & Control methodology that utilizes public Certificate Transparency Logs and blockchain testnet smart contracts as a globally replicated, immutable, and uncensorable broadcast mechanism. We demonstrate how to pass instructions to a distributed swarm with zero network traffic attributable to the operator.*
 *   **Status:** In Peer Review
-*   **Link:** see repo
+*   **Link:** <a href="https://michaelrapoport.github.io/Security-Research-Whitepapers/PL-2027-A2_ Ephemeral State C2.html">here</a>
 ---
 
 ### 📄 **PL-2027-G5: WebGPU for Parallelized Cryptanalysis**
 
 *   **Abstract:** *An analysis of modern browser WebGPU capabilities for orchestrating massively parallel, client-side cryptanalytic attacks. This paper includes performance benchmarks for brute-forcing various hashing algorithms by transforming a fleet of transient web visitors into a temporary, high-performance GPU cluster.*
 *   **Status:** In Progress
-*   **Link:** see repo
+*   **Link:**<a href="https://michaelrapoport.github.io/Security-Research-Whitepapers/PL-2027-G5_ WebGPU Cryptanalysis.html">here</a>
 ---
 
 ## Support Our Independent Research
