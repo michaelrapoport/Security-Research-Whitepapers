@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)file:///C:/Users/mikea/Downloads/ai_studio_code%20(5).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PL-2027-G5: WebGPU Cryptanalysis</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #334155;
+            --heading-color: #0f172a;
+            --accent-color: #059669;
+            --border-color: #e2e8f0;
+            --code-bg: #f8fafc;
+            --primary-bg: #f1f5f9;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;
+                --text-color: #cbd5e1;
+                --heading-color: #f8fafc;
+                --accent-color: #10b981;
+                --border-color: #334155;
+                --code-bg: #1e293b;
+                --primary-bg: #1e293b;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        article {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        header {
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+        }
+        
+        h1, h2, h3 { color: var(--heading-color); }
+        h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-top: 3rem; }
+        h3 { font-size: 1.3rem; margin-top: 2rem; }
+        p { text-align: justify; }
+
+        .paper-id { color: var(--accent-color); font-weight: bold; text-transform: uppercase; font-size: 0.9rem; }
+        
+        .abstract { background: var(--code-bg); padding: 1.5rem; border-left: 4px solid var(--accent-color); border-radius: 4px; font-style: italic; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+        th, td { border: 1px solid var(--border-color); padding: 0.8rem; text-align: left; }
+        th { background-color: var(--primary-bg); }
+        
+        .support-section { margin-top: 4rem; text-align: center; background-color: var(--primary-bg); padding: 2rem; border-radius: 8px; }
+        .support-section h3 { margin-top: 0; }
+        
+        footer { margin-top: 3rem; text-align: center; font-size: 0.8rem; opacity: 0.7; }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <p class="paper-id">Security Research Whitepaper: PL-2027-G5</p>
+            <h1>GPU-as-a-Service</h1>
+            <p>Parallelized Cryptanalysis via Browser WebGPU Swarms</p>
+            <table>
+                <tbody><tr>
+                    <td><b>Author</b></td>
+                    <td><b>Laboratory</b></td>
+                    <td><b>Date</b></td>
+                    <td><b>Classification</b></td>
+                </tr>
+                <tr>
+                    <td>Michael Rapoport</td>
+                    <td>Polaritrionics Labs</td>
+                    <td>Jan 19, 2026</td>
+                    <td>TLP:CLEAR</td>
+                </tr>
+            </tbody></table>
+        </header>
+
+        <section id="abstract">
+            <h2>Abstract</h2>
+            <div class="abstract">
+                The introduction of the WebGPU API into modern browsers represents a paradigm shift in client-side computational capability. This paper details the architecture for a distributed cryptanalysis platform that transforms transient web visitors into a massively parallel, ad-hoc GPU supercomputer. We demonstrate how to orchestrate a swarm to perform high-throughput hashing and brute-forcing tasks by dispatching compute shaders written in WGSL (WebGPU Shading Language). Our findings indicate that a moderately sized swarm can achieve hash rates comparable to dedicated hardware, creating a new class of "free" computational threats.
+            </div>
+        </section>
+
+        <section id="introduction">
+            <h2>1. Introduction: Beyond CPU-Based Browser Mining</h2>
+            <p>For years, browser-based threats have been limited by the inefficiencies of JavaScript and early WebAssembly. This restricted parasitic computation to algorithms that were CPU-friendly but slow. WebGPU changes this calculus entirely by providing low-level access to the thousands of parallel cores on a client's graphics card, enabling tasks that were previously infeasible in a browser context.</p>
+        </section>
+
+        <section id="architecture">
+            <h2>2. System Architecture</h2>
+            <p>The system is built on a Chimeric Network foundation, with a specific focus on the compute layer.</p>
+            <ol>
+                <li><strong>Orchestration Layer (MQTT):</strong> A public MQTT broker is used to distribute "work units." A typical job payload includes the target hash, the salt, and a specific nonce range to partition the search space across the swarm.</li>
+                <li><strong>Compute Layer (WebGPU):</strong> The core cryptographic logic (e.g., a SHA-256 loop) is implemented as a compute shader in WGSL. Upon receiving a work unit, JavaScript transfers the data to a GPU buffer and dispatches the shader, instructing the GPU to execute the hashing function across thousands of workgroups in parallel.</li>
+                <li><strong>Exfiltration Layer (DHT):</strong> To prevent flooding the C2, only successful results are reported. If a node finds a valid nonce, it announces the solution to a public DHT.</li>
+            </ol>
+        </section>
+        
+        <section id="benchmarks">
+            <h2>3. Performance Benchmarks &amp; Evasion</h2>
+            <p>The power of this model is in its massive parallelism. While a single node is weaker than dedicated hardware, the aggregate power of a large swarm is significant.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>System</th>
+                        <th>SHA-256 Hash Rate (Est.)</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Single RTX 4090</td>
+                        <td>~115 GH/s</td>
+                        <td>Dedicated Hardware</td>
+                    </tr>
+                    <tr>
+                        <td>Single Browser (Apple M1 GPU)</td>
+                        <td>~150 MH/s</td>
+                        <td>Single Node</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Swarm of 10,000 Nodes (Avg.)</strong></td>
+                        <td><strong>~1.5 TH/s</strong></td>
+                        <td><strong>Aggregate Power</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Evasion is critical for persistence.</strong> The compute shader is dispatched in bursts and utilizes a limited percentage of the GPU's execution units to avoid noticeable system slowdown. The WebGPU context is often disguised as a legitimate element, such as a WebGL-based game or a 3D advertisement.</p>
+        </section>
+
+        <section id="mitigation">
+            <h2>4. Mitigation Strategies</h2>
+            <p>Countering WebGPU abuse requires a new layer of browser security.</p>
+            <ul>
+                <li><strong>Resource Metering:</strong> Browsers must implement heuristics to detect non-visible tabs or frames that are dispatching a high volume of compute shaders without a corresponding render output.</li>
+                <li><strong>Permissions Model:</strong> Long-running or high-intensity WebGPU compute operations could require an explicit user permission prompt, similar to notifications or location access.</li>
+                <li><strong>Signature Detection:</strong> Security software can be trained to recognize the memory access patterns and WGSL code structures common to popular hashing algorithms.</li>
+            </ul>
+        </section>
+        
+        <section class="support-section">
+            <h3>Support Our Independent Research</h3>
+            <p>If you find value in our work, please consider a donation to support further research.</p>
+            <p>
+                <strong>BTC:</strong> `bc1q...` &nbsp;&nbsp;
+                <strong>ETH:</strong> `0x...` &nbsp;&nbsp;
+                <strong>XMR:</strong> `4...`
+            </p>
+            <a href="https://nowpayments.io/payment/?iid=4957005986&amp;source=button" target="_blank" rel="noreferrer noopener">
+                <img src="./PL-2027-G5_ WebGPU Cryptanalysis_files/payment-button-black.svg" alt="Crypto payment button by NOWPayments">
+            </a>
+        </section>
+
+        <footer>
+            <p>© 2026 Polaritrionics Labs. For academic and defensive security purposes only.</p>
+        </footer>
+    </article>
+
+</body></html>
